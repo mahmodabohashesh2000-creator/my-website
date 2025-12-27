@@ -1,58 +1,81 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أركان ERP | الإصدار المستقر</title>
-    
-    <!-- دعم المتصفحات القديمة وويندوز 7 -->
-    <script async src="https://ga.jspm.io/npm:es-module-shims@1.8.2/dist/es-module-shims.js"></script>
-    
+    <title>Smart ERP - Legacy Edition (Access Style)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tahoma&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #f3f4f6; }
-        #root { width: 100%; height: 100%; }
-        
-        #loading-screen {
-            position: fixed; inset: 0; background: #ffffff;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            z-index: 9999;
+        :root {
+            --win-gray: #D4D0C8;
+            --win-blue: #000080;
+            --win-border-light: #FFFFFF;
+            --win-border-dark: #808080;
         }
-        .loader-logo { color: #2b579a; font-size: 32px; font-weight: 900; margin-bottom: 20px; }
-        .loader-bar { width: 200px; height: 4px; background: #eee; border-radius: 10px; overflow: hidden; }
-        .loader-fill { width: 30%; height: 100%; background: #2b579a; animation: load 1.5s infinite ease-in-out; }
-        @keyframes load { 0% { transform: translateX(200px); } 100% { transform: translateX(-200px); } }
+        body { 
+            font-family: 'Tahoma', 'Segoe UI', sans-serif; 
+            background-color: #3A6EA5; /* Classic Win Desktop Blue */
+            margin: 0;
+            overflow: hidden;
+        }
+        .win-card {
+            background-color: var(--win-gray);
+            border: 2px solid;
+            border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
+            box-shadow: 1px 1px 0 0 #000;
+        }
+        .win-button {
+            background-color: var(--win-gray);
+            border: 2px solid;
+            border-color: var(--win-border-light) var(--win-border-dark) var(--win-border-dark) var(--win-border-light);
+            padding: 4px 12px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .win-button:active {
+            border-color: var(--win-border-dark) var(--win-border-light) var(--win-border-light) var(--win-border-dark);
+            padding: 5px 11px 3px 13px;
+        }
+        .win-title-bar {
+            background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+            color: white;
+            padding: 3px 6px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .win-input {
+            border: 2px solid;
+            border-color: var(--win-border-dark) var(--win-border-light) var(--win-border-light) var(--win-border-dark);
+            background: white;
+            padding: 3px 6px;
+            outline: none;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; }
+        }
     </style>
-
-    <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.2.0?bundle",
-    "react-dom": "https://esm.sh/react-dom@18.2.0?bundle",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?bundle",
-    "lucide-react": "https://esm.sh/lucide-react@0.263.1?bundle&external=react,react-dom",
-    "recharts": "https://esm.sh/recharts@2.7.2?bundle&external=react,react-dom",
-    "xlsx": "https://esm.sh/xlsx@0.18.5?bundle",
+    "react": "https://esm.sh/react@^19.2.3",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
   }
 }
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
 <body>
-    <div id="loading-screen">
-        <div class="loader-logo">أركان <span style="color: #666;">ERP</span></div>
-        <div class="loader-bar"><div class="loader-fill"></div></div>
-        <p style="color: #999; margin-top: 15px; font-size: 13px;">جاري تشغيل النظام...</p>
-    </div>
-
     <div id="root"></div>
-
-    <script type="module" src="./index.tsx"></script>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>
